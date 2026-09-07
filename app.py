@@ -2,7 +2,7 @@
 import streamlit as st
 import torch
 import torch.nn.functional as F
-from transformers import BertTokenizer, BertForSequenceClassification
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 st.set_page_config(
     page_title="BERT Support Ticket Classifier",
@@ -10,7 +10,7 @@ st.set_page_config(
     layout="centered"
 )
 
-HF_MODEL = "YOUR_HF_USERNAME/bert-support-ticket-classifier"
+HF_MODEL = "Himanshus0126/bert-support-ticket-classifier"
 
 id2label = {
     0: "Billing",
@@ -21,9 +21,9 @@ id2label = {
 
 @st.cache_resource
 def load_model():
-    tokenizer = BertTokenizer.from_pretrained(HF_MODEL)
+    tokenizer = AutoTokenizer.from_pretrained(HF_MODEL)
 
-    model = BertForSequenceClassification.from_pretrained(
+    model = AutoModelForSequenceClassification.from_pretrained(
         HF_MODEL
     )
 
